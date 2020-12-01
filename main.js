@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       input1 = tf.cast(input1, 'float32').div(tf.scalar(255));
       input1 = input1.expandDims();
 
-      let input2 = tf.fromPixels(ctx2.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224);
+      let input2 = tf.fromPixels(ctx2.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input2 = tf.cast(input2, 'float32').div(tf.scalar(255));
       input2 = input2.expandDims();
 
