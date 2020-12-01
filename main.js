@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       let input3 = tf.fromPixels(ctx3.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([100,100]);
       input3 = tf.cast(input3, 'float32').div(tf.scalar(255));
       input3 = input3.expandDims();
-      return model.predict(input1, input2, input3).dataSync()[0];
+      return model.predict([input1, input2, input3]).dataSync()[0];
     })
 
     if (prediction > 0.5) {
