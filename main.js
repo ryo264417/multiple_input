@@ -6,7 +6,7 @@ function loadImage(url) {
   })
 }
 
-const modelPromise = tf.loadModel('./vgg16_model/model.json')
+const modelPromise = tf.loadModel('./vgg16_model_2/model.json')
 
 document.addEventListener('DOMContentLoaded', async () => {
   const canvas1 = document.getElementById('canvas1')
