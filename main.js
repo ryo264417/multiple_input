@@ -23,22 +23,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const output = document.getElementById('output')
 
   file1.addEventListener('change', async () => {
-    const dataURL1 = URL.createObjectURL(file1.files[0])
-    const img1 = await loadImage(dataURL1)
-    ctx1.drawImage(img1, 0, 0, 150, 150)
-  })
+  const dataURL1 = URL.createObjectURL(file1.files[0])
+  const img1 = await loadImage(dataURL1)
+  ctx1.drawImage(img1, 0, 0, 150, 150)
 
-    file2.addEventListener('change', async () => {
-      const dataURL2 = URL.createObjectURL(file2.files[0])
-      const img2 = await loadImage(dataURL2)
-      ctx2.drawImage(img2, 0, 0, 150, 150)
-    })
 
-    file3.addEventListener('change', async () => {
-      const dataURL3 = URL.createObjectURL(file3.files[0])
-      const img3 = await loadImage(dataURL3)
-      ctx3.drawImage(img3, 0, 0, 150, 150)
-    })
+  file2.addEventListener('change', async () => {
+  const dataURL2 = URL.createObjectURL(file2.files[0])
+  const img2 = await loadImage(dataURL2)
+  ctx2.drawImage(img2, 0, 0, 150, 150)
+
+
+  file3.addEventListener('change', async () => {
+  const dataURL3 = URL.createObjectURL(file3.files[0])
+  const img3 = await loadImage(dataURL3)
+  ctx3.drawImage(img3, 0, 0, 150, 150)
+
 
     const model = await modelPromise
 
@@ -62,6 +62,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       output.innerHTML = `Not ${100 - prediction * 100}%`
     }
-
+    })
+  })
 })
-
