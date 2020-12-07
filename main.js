@@ -62,11 +62,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       let input3 = tf.fromPixels(ctx3.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input3 = tf.cast(input3, 'float32').div(tf.scalar(255));
       input3 = input3.expandDims();
-      return (model1.predict([input1, input2, input3]).dataSync()[0] + model2.predict([input1, input2, input3]).dataSync()[0] +
-      model3.predict([input1, input2, input3]).dataSync()[0] +   model4.predict([input1, input2, input3]).dataSync()[0] +   model0.predict([input1, input2, input3]).dataSync()[0]) / 5;
+      return model1.predict([input1, input2, input3]).dataSync()[0] + model2.predict([input1, input2, input3]).dataSync()[0] + model3.predict([input1, input2, input3]).dataSync()[0] + model4.predict([input1, input2, input3]).dataSync()[0] + model0.predict([input1, input2, input3]).dataSync()[0];
     })
 
-    if (prediction > 0.5) {
+    if (prediction / 5 > 0.5) {
       output.innerHTML = `Ideal ${prediction * 100}%`
     } else {
       output.innerHTML = `Not ${100 - prediction * 100}%`
