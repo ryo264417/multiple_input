@@ -5,12 +5,13 @@ function loadImage(url) {
     img.addEventListener('load', () => resolve(img))
   })
 }
-const modelPromise0 = tf.loadModel('./vgg16_model4/0/model.json')
-const modelPromise1 = tf.loadModel('./vgg16_model4/1/model.json')
+const modelPromise0 = tf.loadModel('./vgg16_model5/model0/model.json')
+const modelPromise1 = tf.loadModel('./vgg16_model5/model1/model.json')
+/*
 const modelPromise2 = tf.loadModel('./vgg16_model4/2/model.json')
 const modelPromise3 = tf.loadModel('./vgg16_model4/3/model.json')
 const modelPromise4 = tf.loadModel('./vgg16_model4/4/model.json')
-
+*/
 
 document.addEventListener('DOMContentLoaded', async () => {
   const canvas1 = document.getElementById('canvas1')
@@ -43,12 +44,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const img3 = await loadImage(dataURL3)
   ctx3.drawImage(img3, 0, 0, 150, 150)
 
+
     const model0 = await modelPromise0
     const model1 = await modelPromise1
+/*
     const model2 = await modelPromise2
     const model3 = await modelPromise3
     const model4 = await modelPromise4
-
+*/
 
     const prediction = tf.tidy(() => {
       let input1 = tf.fromPixels(ctx1.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
@@ -62,10 +65,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       let input3 = tf.fromPixels(ctx3.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input3 = tf.cast(input3, 'float32').div(tf.scalar(255));
       input3 = input3.expandDims();
-      return model1.predict([input1, input2, input3]).dataSync()[0] + model2.predict([input1, input2, input3]).dataSync()[0] + model3.predict([input1, input2, input3]).dataSync()[0] + model4.predict([input1, input2, input3]).dataSync()[0] + model0.predict([input1, input2, input3]).dataSync()[0];
+      return model1.predict([input1, input2, input3]).dataSync()[0] + model0.predict([input1, input2, input3]).dataSync()[0];
     })
 
-    if (prediction / 5 > 0.5) {
+    if (prediction / 2 > 0.5) {
       output.innerHTML = `Ideal ${prediction * 100}%`
     } else {
       output.innerHTML = `Not ${100 - prediction * 100}%`
