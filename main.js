@@ -5,11 +5,11 @@ function loadImage(url) {
     img.addEventListener('load', () => resolve(img))
   })
 }
-const modelPromise0 = tf.loadModel('./vgg16_model1/0/model.json')
-const modelPromise1 = tf.loadModel('./vgg16_model1/1/model.json')
-const modelPromise2 = tf.loadModel('./vgg16_model1/2/model.json')
-const modelPromise3 = tf.loadModel('./vgg16_model1/3/model.json')
-const modelPromise4 = tf.loadModel('./vgg16_model1/4/model.json')
+const modelPromise0 = tf.loadModel('./vgg16_model4/0/model.json')
+const modelPromise1 = tf.loadModel('./vgg16_model4/1/model.json')
+const modelPromise2 = tf.loadModel('./vgg16_model4/2/model.json')
+const modelPromise3 = tf.loadModel('./vgg16_model4/3/model.json')
+const modelPromise4 = tf.loadModel('./vgg16_model4/4/model.json')
 
 
 document.addEventListener('DOMContentLoaded', async () => {
