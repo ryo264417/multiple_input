@@ -5,7 +5,7 @@ function loadImage(url) {
     img.addEventListener('load', () => resolve(img))
   })
 }
-const modelPromise0 = tf.loadLayersModel('./vgg16_model_3/model.json')
+const modelPromise0 = tf.loadModel('./vgg16_model_3/model.json')
 //const modelPromise1 = tf.loadLayersModel('./vgg16_model5/model7/model.json')
 /*
 const modelPromise2 = tf.loadModel('./vgg16_model4/2/model.json')
@@ -54,15 +54,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 */
 
     const prediction = tf.tidy(() => {
-      let input1 = tf.browser.fromPixels (ctx1.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
+      let input1 = tf.fromPixels (ctx1.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input1 = tf.cast(input1, 'float32').div(tf.scalar(255));
       input1 = input1.expandDims();
 
-      let input2 = tf.browser.fromPixels (ctx2.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
+      let input2 = tf.fromPixels (ctx2.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input2 = tf.cast(input2, 'float32').div(tf.scalar(255));
       input2 = input2.expandDims();
 
-      let input3 = tf.browser.fromPixels (ctx3.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
+      let input3 = tf.fromPixels (ctx3.getImageData(0, 0, 150, 150)).resizeNearestNeighbor([224,224]);
       input3 = tf.cast(input3, 'float32').div(tf.scalar(255));
       input3 = input3.expandDims();
       return  model0.predict([input1, input2, input3]).dataSync()[0];
